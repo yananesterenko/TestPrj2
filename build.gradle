@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    tomcatBase
+    tomcatLib.extendsFrom tomcatBase
+    tomcatShared.extendsFrom tomcatLib
+    implementation.extendsFrom tomcatShared
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Spring
+    tomcatShared group: 'org.springframework', name: 'spring-core', version: '6.0.9'
+    tomcatShared group: 'org.springframework', name: 'spring-beans', version: '6.0.9'
+    tomcatShared group: 'org.springframework', name: 'spring-webmvc', version: '6.0.9'
+    tomcatShared group: 'org.springframework', name: 'spring-web', version: '6.0.9'
+    tomcatShared group: 'org.springframework', name: 'spring-context', version: '6.0.9'   // Für Bean, Controller
+    tomcatShared group: 'org.springframework', name: 'spring-jdbc', version: '6.0.9'
+}
+
+def environment = project.hasProperty('env') ? project.env : 'dev'
+def propsFile = file("src/$environment.properties")
+
+if (propsFile.exists()) {
+    def props = new Properties()
+    props.load(new FileInputStream(propsFile))
+
+    // Use the properties in your build
+    // For example, setting them as project properties
+    project.ext {
+        apiUrl = props.getProperty('api.url')
+        // Add more properties as needed
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
