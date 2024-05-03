@@ -19,7 +19,9 @@ pipeline {
             }
         stage('Build') {
             steps {
-                sh "./gradlew build -Penv=${params.ENVIRONMENT}"
+                //sh "./gradlew build -Penv=${params.ENVIRONMENT}"
+                bat'./gradlew build -Penv=${params.ENVIRONMENT}'
+
             }
         }
 
