@@ -13,7 +13,8 @@ pipeline {
                     script {
                         // Print out the properties after the build
                         echo "Properties for ${params.ENVIRONMENT} environment:"
-                        sh "cat src/${params.ENVIRONMENT}.properties"
+                        //sh "cat src/${params.ENVIRONMENT}.properties"
+                        bat "cat src/${params.ENVIRONMENT}.properties"
                     }
                 }
             }
