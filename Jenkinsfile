@@ -14,7 +14,7 @@ pipeline {
                         // Print out the properties after the build
                         echo "Properties for ${params.ENVIRONMENT} environment:"
                         //sh "cat src/${params.ENVIRONMENT}.properties"
-                        bat "cat src/${params.ENVIRONMENT}.properties"
+                        bat "type src/${params.ENVIRONMENT}.properties"
                     }
                 }
             }
