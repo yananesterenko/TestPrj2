@@ -18,7 +18,8 @@ pipeline {
     parameters {
         choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
         gitParameter(
-        branchFilter: 'origin/(.*)',
+        //branchFilter: 'origin/(.*)',
+        branchFilter: '.*',
         defaultValue: 'master',
         description: 'Select a branch',
         name: 'BRANCH')
