@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     def branchName = params.BRANCH ?: 'master'
-                    echo "${params.BRANCH}"
+                    echo "Selected branch : ${params.BRANCH}"
                     checkout([$class: 'GitSCM',
                         //branches: [[name: "*/${branchName}"]],
                         branches: [[name: "${branchName}"]],
