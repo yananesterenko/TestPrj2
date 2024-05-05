@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-    choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
         gitParameter(branchFilter: 'origin/(.*)', defaultValue: 'master', description: 'Select a branch', name: 'BRANCH')
     }
 
