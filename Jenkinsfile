@@ -1,9 +1,27 @@
 pipeline {
     agent any
 
+//     parameters {
+//         choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
+//         gitParameter(branch: '',
+//         branchFilter: 'origin/{.*}'),
+//         defaultValue: 'dev',
+//         description: '',
+//         name: 'BRANCH',
+//         quickFilterEnabled: true,
+//         selectedValue: 'TOP',
+//         sortMode: 'DESCENDING',
+//         tagFilter: '*',
+//         type: ''
+//     }
+
     parameters {
         choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
-        gitParameter(branchFilter: 'origin/(.*)', defaultValue: 'master', description: 'Select a branch', name: 'BRANCH')
+        gitParameter(
+        branchFilter: 'origin/(.*)',
+        defaultValue: 'master',
+        description: 'Select a branch',
+        name: 'BRANCH')
     }
 
 
@@ -12,8 +30,10 @@ pipeline {
             steps {
                 script {
                     def branchName = params.BRANCH ?: 'master'
+                    echo "${params.BRANCH}"
                     checkout([$class: 'GitSCM',
-                        branches: [[name: "*/${branchName}"]],
+                        //branches: [[name: "*/${branchName}"]],
+                        branches: [[name: "${branchName}"]],
                         userRemoteConfigs: [[url: env.GIT_URL]]])
                     }
                 }
@@ -38,7 +58,8 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                 echo "Deploy...."
+                echo "Deploying branch ${params.BRANCH} to ${params.ENVIRONMENT} environment"
+
             }
         }
     }
