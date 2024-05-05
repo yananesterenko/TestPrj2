@@ -56,7 +56,8 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                 echo "Deploy...."
+                echo "Deploying branch ${params.BRANCH} to ${params.ENVIRONMENT} environment"
+
             }
         }
     }
