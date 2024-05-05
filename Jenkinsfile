@@ -31,7 +31,8 @@ pipeline {
                 script {
                     def branchName = params.BRANCH ?: 'master'
                     checkout([$class: 'GitSCM',
-                        branches: [[name: "*/${branchName}"]],
+                        //branches: [[name: "*/${branchName}"]],
+                        branches: [[name: "${branchName}"]],
                         userRemoteConfigs: [[url: env.GIT_URL]]])
                     }
                 }
