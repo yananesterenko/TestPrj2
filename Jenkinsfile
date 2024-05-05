@@ -27,18 +27,18 @@ pipeline {
 
 
     stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    def branchName = params.BRANCH ?: 'master'
-                    echo "Selected branch : ${params.BRANCH}"
-                    checkout([$class: 'GitSCM',
-                        //branches: [[name: "*/${branchName}"]],
-                        branches: [[name: "${branchName}"]],
-                        userRemoteConfigs: [[url: env.GIT_URL]]])
-                    }
-                }
-            }
+//         stage('Checkout') {
+//             steps {
+//                 script {
+//                     def branchName = params.BRANCH ?: 'master'
+//                     echo "Selected branch : ${params.BRANCH}"
+//                     checkout([$class: 'GitSCM',
+//                         //branches: [[name: "*/${branchName}"]],
+//                         branches: [[name: "${branchName}"]],
+//                         userRemoteConfigs: [[url: env.GIT_URL]]])
+//                     }
+//                 }
+//             }
         stage('Print Properties') {
                 steps {
                     script {
