@@ -14,22 +14,6 @@ pipeline {
 //         tagFilter: '*',
 //         type: ''
 //     }pipeline {
-            agent any
-
-        //     parameters {
-        //         choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
-        //         gitParameter(branch: '',
-        //         branchFilter: 'origin/{.*}'),
-        //         defaultValue: 'dev',
-        //         description: '',
-        //         name: 'BRANCH',
-        //         quickFilterEnabled: true,
-        //         selectedValue: 'TOP',
-        //         sortMode: 'DESCENDING',
-        //         tagFilter: '*',
-        //         type: ''
-        //     }
-
             parameters {
                 choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
                 gitParameter(
@@ -45,7 +29,7 @@ pipeline {
                     steps {
                         script {
                             def branchName = params.BRANCH ?: 'master'
-                            echo "${params.BRANCH}"
+                            echo "Checkout from branch: ${params.BRANCH}"
                             checkout([$class: 'GitSCM',
                                 //branches: [[name: "*/${branchName}"]],
                                 branches: [[name: "${branchName}"]],
