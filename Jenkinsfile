@@ -38,9 +38,15 @@ pipeline {
 				steps {
 					//sh "./gradlew build -Penv=${params.ENVIRONMENT}"
 					bat'./gradlew build -Penv=${params.ENVIRONMENT}'
-
 				}
 			}
+
+			stage('Unit Tests') {
+                        steps {
+                            // Run your Java unit tests
+                            sh 'gradle test'
+                        }
+                    }
 
 			stage('Deploy') {
 				steps {
