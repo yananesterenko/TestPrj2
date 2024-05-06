@@ -1,15 +1,16 @@
 pipeline {
     agent any
 		parameters {
-                choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
-                gitParameter(
+            choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
+            gitParameter(
                 //branchFilter: 'origin/(.*)',
                 branchFilter: 'origin/(.*)',
                 defaultValue: 'master',
                 description: 'Select a branch',
                 name: 'BRANCH',
                 selectedValue: 'TOP',
-                sortMode: 'DESCENDING')
+                sortMode: 'DESCENDING'
+                )
             }
 
 			stages {
