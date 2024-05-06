@@ -3,10 +3,13 @@ pipeline {
 		parameters {
                 choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
                 gitParameter(
+                //branchFilter: 'origin/(.*)',
                 branchFilter: 'origin/(.*)',
                 defaultValue: 'master',
                 description: 'Select a branch',
-                name: 'BRANCH')
+                name: 'BRANCH',
+                selectedValue: 'TOP',
+                sortMode: 'DESCENDING')
             }
 
 			stages {
